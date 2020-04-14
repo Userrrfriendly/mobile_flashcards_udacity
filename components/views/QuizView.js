@@ -7,8 +7,9 @@ import {
   TouchableWithoutFeedback,
   Button,
 } from "react-native";
-import Card from "../card/card";
+// import Card from "../card/card";
 import MainButton from "../Button/CustomButton";
+import AppBackground from "../appBackground/AppBackground";
 
 const DATA = {
   question: "What is React?",
@@ -61,7 +62,7 @@ const QuizView = () => {
   };
 
   return (
-    <View style={styles.root}>
+    <AppBackground>
       <Text>{`question 1 of 2`}</Text>
       <View style={styles.mainContent}>
         <TouchableWithoutFeedback onPress={flipCard}>
@@ -98,7 +99,7 @@ const QuizView = () => {
           <MainButton style={styles.btnIncorrect} title="incorrect" />
         </View>
       </View>
-    </View>
+    </AppBackground>
   );
 };
 

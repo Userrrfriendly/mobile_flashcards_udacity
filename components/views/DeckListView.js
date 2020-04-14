@@ -1,28 +1,44 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { DECKS } from "../../dummyData/data";
 import Card from "../card/card";
+import AppBackground from "../appBackground/AppBackground";
 
-export default function App() {
+export default function DecklistView(props) {
   const [decks, setDecks] = React.useState(DECKS);
 
+  const handleNavigate = () => {
+    props.navigation.navigate("Deck");
+  };
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        numColumns={2}
-        columnWrapperStyle={{ justifyContent: "center" }}
-        data={decks}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <Card style={styles.deck}>
-            <Text style={styles.deckName}>{item.name}</Text>
-            <View style={{ paddingVertical: 5 }}>
-              <Text>{`${item.questions.length} cards`}</Text>
-            </View>
-          </Card>
-        )}
-      />
-    </View>
+    <AppBackground>
+      <View style={styles.container}>
+        <FlatList
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: "center" }}
+          data={decks}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={handleNavigate}>
+              <Card style={styles.deck}>
+                <Text style={styles.deckName}>{item.name}</Text>
+                <View style={{ paddingVertical: 5 }}>
+                  <Text>{`${item.questions.length} cards`}</Text>
+                </View>
+              </Card>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    </AppBackground>
   );
 }
 

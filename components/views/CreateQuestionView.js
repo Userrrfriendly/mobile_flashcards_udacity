@@ -9,8 +9,9 @@ import {
   Platform,
 } from "react-native";
 import MainButton from "../Button/CustomButton";
+import AppBackground from "../appBackground/AppBackground";
 
-const NewDeckView = (props) => {
+const CreateQuestion = (props) => {
   const [questionVal, setQuestionVal] = React.useState("");
   const [answerVal, setAnswerVal] = React.useState("");
 
@@ -40,37 +41,39 @@ const NewDeckView = (props) => {
       }
     }
   };
-  return (
-    <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.Os == "ios" ? "padding" : "height"}
-    >
-      <Text style={styles.title}>Create new question</Text>
 
-      <TextInput
-        placeholder="Enter Question"
-        placeholderTextColor="black"
-        multiline
-        numberOfLines={2}
-        style={styles.input}
-        value={questionVal}
-        onChangeText={(text) => setQuestionVal(text)}
-      />
-      <TextInput
-        placeholder="Enter Answer"
-        placeholderTextColor="black"
-        multiline
-        numberOfLines={2}
-        style={styles.input}
-        value={answerVal}
-        onChangeText={(text) => setAnswerVal(text)}
-      />
-      <MainButton
-        title="Submit"
-        style={styles.btnSubmit}
-        onPress={handleSubmit}
-      />
-    </KeyboardAvoidingView>
+  return (
+    <AppBackground>
+      <KeyboardAvoidingView
+        style={styles.root}
+        behavior={Platform.Os == "ios" ? "padding" : "height"}
+      >
+        <Text style={styles.title}>Create new question</Text>
+        <TextInput
+          placeholder="Enter Question"
+          placeholderTextColor="lightgrey"
+          multiline
+          numberOfLines={2}
+          style={styles.input}
+          value={questionVal}
+          onChangeText={(text) => setQuestionVal(text)}
+        />
+        <TextInput
+          placeholder="Enter Answer"
+          placeholderTextColor="lightgrey"
+          multiline
+          numberOfLines={2}
+          style={styles.input}
+          value={answerVal}
+          onChangeText={(text) => setAnswerVal(text)}
+        />
+        <MainButton
+          title="Submit"
+          style={styles.btnSubmit}
+          onPress={handleSubmit}
+        />
+      </KeyboardAvoidingView>
+    </AppBackground>
   );
 };
 
@@ -100,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewDeckView;
+export default CreateQuestion;

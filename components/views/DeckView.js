@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import MainButton from "../Button/CustomButton";
+import AppBackground from "../appBackground/AppBackground";
 
 const DATA = {
   name: "React Dummy Deck ",
@@ -22,24 +23,35 @@ const DATA = {
 // An option to add a new question to the deck
 
 const DeckView = (props) => {
+  const handleQuizNavigation = () => {
+    props.navigation.navigate("Quiz");
+  };
+
+  const handleAddQuestionNavigation = () => {
+    props.navigation.navigate("Create Question");
+  };
+
   return (
-    <View style={styles.root}>
-      <ImageBackground
-        source={require("../../assets/CROP_Cardboard_06-min.jpg")}
-        style={styles.image}
-      >
-        <Text style={styles.deckTitle}>{DATA.name}</Text>
-        <Text style={styles.cardsNum}>{`${DATA.questions.length} cards`}</Text>
-        <View style={styles.btnContainer}>
-          <View style={styles.btnWrapper}>
-            <MainButton title="start quiz" style={{ paddingVertical: 20 }} />
-          </View>
-          <View style={styles.btnWrapper}>
-            <MainButton title="Add question" style={{ paddingVertical: 20 }} />
-          </View>
+    <AppBackground style={styles.root}>
+      <Text style={styles.deckTitle}>{DATA.name}</Text>
+      <Text style={styles.cardsNum}>{`${DATA.questions.length} cards`}</Text>
+      <View style={styles.btnContainer}>
+        <View style={styles.btnWrapper}>
+          <MainButton
+            title="start quiz"
+            style={{ paddingVertical: 20 }}
+            onPress={handleQuizNavigation}
+          />
         </View>
-      </ImageBackground>
-    </View>
+        <View style={styles.btnWrapper}>
+          <MainButton
+            title="Add question"
+            style={{ paddingVertical: 20 }}
+            onPress={handleAddQuestionNavigation}
+          />
+        </View>
+      </View>
+    </AppBackground>
   );
 };
 

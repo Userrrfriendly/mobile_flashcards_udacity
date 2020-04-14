@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { fifth as red } from "../../utils/colors";
+
 const CustomButton = (props) => {
+  // console.log(props.onPress);
   return (
     <TouchableOpacity
       activeOpacity={0.35}

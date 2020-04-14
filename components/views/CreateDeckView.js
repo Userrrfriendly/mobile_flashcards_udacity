@@ -10,8 +10,9 @@ import {
   // Platform,
 } from "react-native";
 import MainButton from "../Button/CustomButton";
+import AppBackground from "../appBackground/AppBackground";
 
-const NewDeckView = (props) => {
+const CreateDeckView = (props) => {
   const [inputValue, setInputValue] = React.useState("");
 
   const createAlert = () =>
@@ -39,9 +40,9 @@ const NewDeckView = (props) => {
     }
   };
   return (
-    <View
-      style={styles.root}
-      // behavior={Platform.Os == "ios" ? "padding" : "height"}
+    <AppBackground
+    // style={styles.root}
+    // behavior={Platform.Os == "ios" ? "padding" : "height"}
     >
       <Text style={styles.title}>Enter the deck's name</Text>
 
@@ -59,7 +60,7 @@ const NewDeckView = (props) => {
         style={styles.btnSubmit}
         onPress={handleSubmit}
       />
-    </View>
+    </AppBackground>
   );
 };
 
@@ -89,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewDeckView;
+export default CreateDeckView;
