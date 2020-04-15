@@ -5,9 +5,8 @@ import {
   StyleSheet,
   Animated,
   TouchableWithoutFeedback,
-  Button,
 } from "react-native";
-// import Card from "../card/card";
+import { TOMATO, SUCCESS_GREEN } from "../../utils/colors";
 import MainButton from "../Button/CustomButton";
 import AppBackground from "../appBackground/AppBackground";
 
@@ -142,12 +141,13 @@ const styles = StyleSheet.create({
     width: "95%",
   },
   btnCorrect: {
-    backgroundColor: "green",
+    backgroundColor: SUCCESS_GREEN,
     width: "45%",
     marginRight: "5%",
   },
   btnIncorrect: {
     width: "45%",
+    backgroundColor: TOMATO,
   },
 });
 
