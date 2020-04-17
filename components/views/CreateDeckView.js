@@ -1,19 +1,14 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  Alert,
-  Keyboard,
-  // KeyboardAvoidingView,
-  // Platform,
-} from "react-native";
+import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { StyleSheet, Text, TextInput, Alert, Keyboard } from "react-native";
 import MainButton from "../Button/CustomButton";
 import AppBackground from "../appBackground/AppBackground";
+import { createDeck } from "../../store/actions/actions";
 
 const CreateDeckView = (props) => {
   const [inputValue, setInputValue] = React.useState("");
+  const dispatch = useDispatch();
 
   const createAlert = () =>
     Alert.alert(
@@ -22,17 +17,19 @@ const CreateDeckView = (props) => {
       [
         {
           text: "OK",
-          //  onPress: () => console.log("OK Pressed")
         },
       ],
       { cancelable: false }
     );
 
   const handleSubmit = () => {
-    if (inputValue && inputValue !== "") {
-      console.log(inputValue.trim());
+    if (inputValue && inputValue.trim() !== "") {
+      const id = uuidv4();
+      dispatch(createDeck(id, inputValue.trim()));
       setInputValue("");
       Keyboard.dismiss();
+      // props.navigation.navigate("Deck", { id });
+      props.navigation.replace("Deck", { id });
     } else {
       {
         createAlert();
@@ -40,10 +37,7 @@ const CreateDeckView = (props) => {
     }
   };
   return (
-    <AppBackground
-    // style={styles.root}
-    // behavior={Platform.Os == "ios" ? "padding" : "height"}
-    >
+    <AppBackground>
       <Text style={styles.title}>Enter the deck's name</Text>
 
       <TextInput
@@ -65,11 +59,6 @@ const CreateDeckView = (props) => {
 };
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    width: "100%",
-    alignItems: "center",
-  },
   title: {
     fontSize: 30,
     marginTop: 20,

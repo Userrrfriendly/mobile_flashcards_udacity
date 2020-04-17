@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -10,10 +11,12 @@ import {
 } from "react-native";
 import MainButton from "../Button/CustomButton";
 import AppBackground from "../appBackground/AppBackground";
+import { createQuestion } from "../../store/actions/actions";
 
 const CreateQuestion = (props) => {
   const [questionVal, setQuestionVal] = React.useState("");
   const [answerVal, setAnswerVal] = React.useState("");
+  const dispatch = useDispatch();
 
   const createAlert = () =>
     Alert.alert(
@@ -22,19 +25,24 @@ const CreateQuestion = (props) => {
       [
         {
           text: "OK",
-          //  onPress: () => console.log("OK Pressed")
         },
       ],
       { cancelable: false }
     );
 
   const handleSubmit = () => {
-    if (questionVal !== "" && answerVal !== "") {
-      console.log(questionVal.trim());
-      console.log(answerVal.trim());
+    if (questionVal.trim() !== "" && answerVal.trim() !== "") {
+      dispatch(
+        createQuestion(
+          props.route.params.id,
+          questionVal.trim(),
+          answerVal.trim()
+        )
+      );
       setQuestionVal("");
       setAnswerVal("");
       Keyboard.dismiss();
+      props.navigation.navigate("Deck", { id: props.route.params.id });
     } else {
       {
         createAlert();

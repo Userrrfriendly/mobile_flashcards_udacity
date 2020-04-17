@@ -9,20 +9,23 @@ import {
 import { TOMATO, SUCCESS_GREEN } from "../../utils/colors";
 import MainButton from "../Button/CustomButton";
 import AppBackground from "../appBackground/AppBackground";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  answerCorrect,
+  answerIncorrect,
+  startQuiz,
+} from "../../store/actions/actions";
+import GameOverScreen from "../GameOverScreen/GameOverScreen";
 
-const DATA = {
-  question: "What is React?",
-  answer: "A library for managing user interfaces",
-};
+const QuizView = (props) => {
+  const dispatch = useDispatch();
+  const [quizOver, setQuizOver] = useState(false);
+  const [index, setIndex] = useState(0);
+  const deck = props.route.params.deck;
+  const quiz = useSelector((state) => state.quiz.quiz);
+  const question = quiz.questions[index].question;
+  const answer = quiz.questions[index].answer;
 
-// displays a card question
-// an option to view the answer (flips the card)
-// a "Correct" button
-// an "Incorrect" button
-// the number of cards left in the quiz
-// Displays the percentage correct once the quiz is complete
-
-const QuizView = () => {
   const rotation = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(0)).current;
 
@@ -30,10 +33,6 @@ const QuizView = () => {
   const animationDuration = 500;
 
   const flipCard = () => {
-    // delay the statechange
-    // setTimeout(() => {
-    //   setFlipped(true);
-    // }, animationDuration / 2);
     setFlipped(true);
 
     Animated.timing(rotation, {
@@ -48,56 +47,118 @@ const QuizView = () => {
     }).start();
   };
 
-  const reset = () => {
-    // setTimeout(() => {
-    //   setFlipped(false);
-    // }, animationDuration);
+  const resetAnimation = () => {
     setFlipped(false);
     Animated.timing(rotation, {
       toValue: 0,
-      duration: animationDuration,
+      duration: 0, //make it instant,
       useNativeDriver: true,
     }).start();
   };
 
+  const calcAnswers = () => {
+    const result = {};
+    result.correct = quiz.questions.reduce((a, c) => {
+      return c.correct ? a + 1 : a + 0;
+    }, 0);
+    console.log(
+      quiz.questions.reduce((a, c) => {
+        return c.correct ? a + 1 : a + 0;
+      }, 0)
+    );
+    result.length = quiz.questions.length;
+    console.log(result);
+    return result;
+  };
+
+  const handleCorrectPress = () => {
+    if (index < quiz.questions.length) {
+      dispatch(answerCorrect(index));
+      if (index < quiz.questions.length - 1) {
+        resetAnimation();
+        setIndex(index + 1);
+      } else {
+        setQuizOver(true);
+      }
+    }
+  };
+
+  const handleIncorrectPress = () => {
+    if (index < quiz.questions.length) {
+      dispatch(answerIncorrect(index));
+      if (index < quiz.questions.length - 1) {
+        resetAnimation();
+        setIndex(index + 1);
+      } else {
+        setQuizOver(true);
+      }
+    }
+  };
+
+  const goBack = () => props.navigation.goBack();
+  const restart = () => {
+    dispatch(startQuiz(deck));
+    props.navigation.replace("Quiz", { deck });
+  };
+
   return (
     <AppBackground>
-      <Text>{`question 1 of 2`}</Text>
-      <View style={styles.mainContent}>
-        <TouchableWithoutFeedback onPress={flipCard}>
-          <Animated.View
-            style={[
-              styles.card,
-              {
-                transform: [
+      {quizOver ? (
+        <GameOverScreen
+          goBack={goBack}
+          restart={restart}
+          results={calcAnswers()}
+        />
+      ) : (
+        <>
+          <Text>{`question ${index + 1} of ${quiz.questions.length}`}</Text>
+          <View style={styles.mainContent}>
+            <TouchableWithoutFeedback onPress={flipCard}>
+              <Animated.View
+                style={[
+                  styles.card,
                   {
-                    rotateY: rotation.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: ["0deg", "360deg"],
-                    }),
+                    transform: [
+                      {
+                        rotateY: rotation.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: ["0deg", "360deg"],
+                        }),
+                      },
+                    ],
                   },
-                ],
-              },
-              { perspective: 1000 },
-            ]}
-            backfaceVisibility="visible"
-          >
-            {flipped ? (
-              <Animated.View style={[styles.cardContent, { opacity: opacity }]}>
-                <Text>{`${DATA.question}`}</Text>
-                <Text style={styles.textMain}>{DATA.answer}</Text>
+                  { perspective: 1000 },
+                ]}
+                backfaceVisibility="visible"
+              >
+                {flipped ? (
+                  <Animated.View
+                    style={[styles.cardContent, { opacity: opacity }]}
+                  >
+                    <Text style={styles.textSecondary}>{question}</Text>
+                    <Text style={styles.textMain}>{answer}</Text>
+                  </Animated.View>
+                ) : (
+                  <Text style={styles.textMain}>{question}</Text>
+                )}
               </Animated.View>
-            ) : (
-              <Text style={styles.textMain}>{`${DATA.question}`}</Text>
-            )}
-          </Animated.View>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
 
-        <View style={styles.btnContainer}>
-          <MainButton style={styles.btnCorrect} title="correct" />
-          <MainButton style={styles.btnIncorrect} title="incorrect" />
-        </View>
-      </View>
+            <View style={styles.btnContainer}>
+              <MainButton
+                style={styles.btnCorrect}
+                title="correct"
+                onPress={handleCorrectPress}
+              />
+              <MainButton
+                style={styles.btnIncorrect}
+                title="incorrect"
+                onPress={handleIncorrectPress}
+              />
+            </View>
+          </View>
+        </>
+      )}
     </AppBackground>
   );
 };
@@ -109,11 +170,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  root: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "center",
-  },
   card: {
     width: "90%",
     minHeight: 150,
@@ -122,16 +178,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#F4D8CD",
     overflow: "hidden",
-    marginBottom: 35,
+    marginVertical: "5%",
     justifyContent: "center",
     alignItems: "center",
+    flexGrow: 1,
   },
   cardContent: {
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "space-around",
+    flexGrow: 1,
   },
   textMain: {
-    fontSize: 25,
+    fontSize: 22,
+    textAlign: "center",
+    marginHorizontal: 5,
+  },
+  textSecondary: {
+    paddingHorizontal: 10,
+    color: "grey",
     textAlign: "center",
   },
   btnContainer: {
@@ -139,6 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "95%",
+    marginVertical: "5%",
   },
   btnCorrect: {
     backgroundColor: SUCCESS_GREEN,

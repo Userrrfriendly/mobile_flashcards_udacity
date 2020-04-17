@@ -1,523 +1,69 @@
 export const DECKS = [
   {
-    name: "FirstDeck",
+    id: "1",
+    name: "React Native: Components, Styles and Layouts",
     questions: [
       {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
+        question:
+          "What's one of the main roles of the built-in <View> component?",
+        answer: "Structure/Group other child components",
       },
       {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
+        question:
+          "Can you use HTML elements (e.g. <div>, <p>, <input>) in React Native apps?",
+        answer: "NO!",
+      },
+      {
+        question:
+          "What's the relation between React Native component styling and CSS (Cascading Style Sheets) for the Web?",
+        answer:
+          "React Native styling is inspired by CSS (similar property names values etc)",
+      },
+      {
+        question:
+          "Will the following example work in React Native: 'background-color':'#ccc' ?",
+        answer: "NO!",
+      },
+      {
+        question:
+          "Why would you use const styles = StyleSheet.create({}) instead of a regular JavaScript object (const styles = {})?",
+        answer:
+          "Using StyleSheets adds validation and potential performance improvements.",
+      },
+      {
+        question: "What's Flexbox?",
+        answer:
+          "A set of styling properties that allows you to structure content (ie create layouts).",
+      },
+      {
+        question:
+          "What's the default styling/ layout behavior of a <View> component?",
+        answer: "It uses Flexbox to organize its child components.",
+      },
+      {
+        question:
+          "If a <View> has flexDirection: 'column' (which is the default) - what does alignItems: 'flex-end' do in that case??",
+        answer:
+          "It positions all child elements at the end of the column - on the horizontal axis.",
       },
     ],
   },
   {
-    name: "DUMMY DECK",
+    id: "DOUGLAS",
+    name: "Douglas Adams Quiz",
     questions: [
       {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-      { question: "how mutch?", answer: "three fifty" },
-    ],
-  },
-  {
-    name: "decxxxk12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
+        question:
+          "What's the answer to the Ultimate Question of Life, the Universe, and Everything",
+        answer: "42",
       },
     ],
   },
+
   {
-    name: "decxxxk13",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "decxxxk14",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "DUPER LONG NAME FOR A DECK OF STEEL AND MANY CARDS",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "decxxxk16",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "decxxxk17",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dexxxck18",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dexxxck19",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dexxxck10",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "abdexxxck111",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-    ],
-  },
-  {
-    name: "dxxxeck112",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "adxxxeck0",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "adxxxeck1",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "adxxxaeck12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "daxxxeck13",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dexxxack14",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dexxxcak15",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "decakxxx16",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "daxxxeck17",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "daexxxck18",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "dea3ck10",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d1ecdk111x",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d2eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d3eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d4eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d5eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d6eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d7eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d8eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d9eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "d10eck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "1deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "2deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "3deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "4deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "5deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "6deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "7deck1a12",
-    questions: [
-      {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
-      },
-      {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
-      },
-    ],
-  },
-  {
-    name: "manowar",
+    id: "react",
+
+    name: "React",
     questions: [
       {
         question: "What is React?",
@@ -531,15 +77,40 @@ export const DECKS = [
   },
 
   {
-    name: "LAST DECK of steel",
+    id: "emptydeck",
+    name: "New Deck",
+    questions: [],
+  },
+
+  {
+    id: "MANOWAR",
+    name: "Deck of many things",
     questions: [
       {
-        question: "What is React?",
-        answer: "A library for managing user interfaces",
+        question:
+          "Stop! Who would cross the Bridge of Death must answer me these questions three, ere the other side he see.",
+        answer: "Ask me the questions, bridgekeeper. I am not afraid.",
       },
       {
-        question: "Where do you make Ajax requests in React?",
-        answer: "The componentDidMount lifecycle event",
+        question: "What... is your name?",
+        answer: "Sir Galahad of Camelot",
+      },
+      {
+        question: "What... is your quest?",
+        answer: "To seek the Holy Grail.",
+      },
+      {
+        question: " What... is your favorite color?",
+        answer: "Blue. No, yel-- auuuuuuuugh!",
+      },
+      {
+        question: "What... is the air-speed velocity of an unladen swallow?",
+        answer: "What do you mean? An African or European swallow?",
+      },
+      {
+        question: "How do know so much about swallows?",
+        answer:
+          "Well, you have to know these things when you're a king, you know.",
       },
       {
         question: "What color is the firetrack",

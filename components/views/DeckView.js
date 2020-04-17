@@ -1,40 +1,43 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import MainButton from "../Button/CustomButton";
 import AppBackground from "../appBackground/AppBackground";
-
-const DATA = {
-  name: "React Dummy Deck ",
-  questions: [
-    {
-      question: "What is React?",
-      answer: "A library for managing user interfaces",
-    },
-    {
-      question: "Where do you make Ajax requests in React?",
-      answer: "The componentDidMount lifecycle event",
-    },
-  ],
-};
-
-// displays the title of the Deck
-// displays the number of cards in the deck
-// displays an option to start a quiz on this specific deck
-// An option to add a new question to the deck
+import { useDispatch, useSelector } from "react-redux";
+import { startQuiz } from "../../store/actions/actions";
 
 const DeckView = (props) => {
+  const decks = useSelector((state) => state.decks.decks);
+  const deck = decks.find((d) => d.id === props.route.params.id);
+  const dispatch = useDispatch();
+  const createAlert = () =>
+    Alert.alert(
+      "Ooops!",
+      "The quiz is empty, add some questions first.",
+      [
+        {
+          text: "OK",
+        },
+      ],
+      { cancelable: false }
+    );
+
   const handleQuizNavigation = () => {
-    props.navigation.navigate("Quiz");
+    if (deck.questions.length > 0) {
+      dispatch(startQuiz(deck));
+      props.navigation.navigate("Quiz", { deck, id: props.route.params.id });
+    } else {
+      createAlert();
+    }
   };
 
   const handleAddQuestionNavigation = () => {
-    props.navigation.navigate("Create Question");
+    props.navigation.navigate("Create Question", { id: props.route.params.id });
   };
 
   return (
     <AppBackground style={styles.root}>
-      <Text style={styles.deckTitle}>{DATA.name}</Text>
-      <Text style={styles.cardsNum}>{`${DATA.questions.length} cards`}</Text>
+      <Text style={styles.deckTitle}>{deck.name}</Text>
+      <Text style={styles.cardsNum}>{`${deck.questions.length} cards`}</Text>
       <View style={styles.btnContainer}>
         <View style={styles.btnWrapper}>
           <MainButton
@@ -79,32 +82,6 @@ const styles = StyleSheet.create({
   },
   btnWrapper: {
     minWidth: "40%",
-  },
-  image: {
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  //
-  box: {
-    height: 100,
-    width: 100,
-    borderRadius: 5,
-    marginVertical: 40,
-    backgroundColor: "#61dafb",
-    alignItems: "center",
-    justifyContent: "center",
-    borderColor: "red",
-    borderWidth: 10,
-  },
-  text: {
-    fontSize: 14,
-    fontWeight: "bold",
-    margin: 8,
-    color: "#000",
-    textAlign: "center",
   },
 });
 
