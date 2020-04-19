@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../components/views/DeckListView";
 import DeckView from "../components/views/DeckView";
+// import { screenOptions as deckViewOptions } from "../components/views/DeckView";
 import QuizView from "../components/views/QuizView";
 import CreateDeckView from "../components/views/CreateDeckView";
 import CreateQuestionView from "../components/views/CreateQuestionView";
@@ -21,6 +22,7 @@ const defaultNavOptions = {
   headerBackTilteStyle: {
     //fontFamily:'open-sans'
   },
+
   headerTintColor: SOFT_BLACK, //the back arrow
 };
 
@@ -33,7 +35,11 @@ export default function AppNavigator(props) {
           component={HomeScreen}
           // options={} custom options will go here
         />
-        <Stack.Screen name="Deck" component={DeckView} />
+        <Stack.Screen
+          name="Deck"
+          component={DeckView}
+          // options={deckViewOptions}
+        />
         <Stack.Screen name="Quiz" component={QuizView} />
         <Stack.Screen name="Create Deck" component={CreateDeckView} />
         <Stack.Screen name="Create Question" component={CreateQuestionView} />

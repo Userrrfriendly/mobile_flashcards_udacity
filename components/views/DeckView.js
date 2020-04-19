@@ -9,6 +9,7 @@ const DeckView = (props) => {
   const decks = useSelector((state) => state.decks.decks);
   const deck = decks.find((d) => d.id === props.route.params.id);
   const dispatch = useDispatch();
+
   const createAlert = () =>
     Alert.alert(
       "Ooops!",
@@ -57,6 +58,13 @@ const DeckView = (props) => {
     </AppBackground>
   );
 };
+
+// export const screenOptions = (navData) => {
+//   const name = navData.route.params.name;
+//   return {
+//     headerTitle: `Deck: ${name}`,
+//   };
+// };
 
 const styles = StyleSheet.create({
   root: {

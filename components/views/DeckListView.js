@@ -15,8 +15,8 @@ import { useSelector } from "react-redux";
 export default function DecklistView(props) {
   const decks = useSelector((state) => state.decks.decks);
 
-  const handleNavigateToDeck = (id) => {
-    props.navigation.navigate("Deck", { id });
+  const handleNavigateToDeck = (id, name) => {
+    props.navigation.navigate("Deck", { id, name });
   };
 
   const handleFab = () => {
@@ -31,7 +31,7 @@ export default function DecklistView(props) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={handleNavigateToDeck.bind(this, item.id)}
+              onPress={handleNavigateToDeck.bind(this, item.id, item.name)}
               style={styles.deckSingle}
             >
               <View>
@@ -58,6 +58,14 @@ export default function DecklistView(props) {
     </AppBackground>
   );
 }
+
+// const screenOptions = (navData) => {
+//   const name = navData.navigation.getParam("name");
+
+//   return {
+//     headerTitle: name,
+//   };
+// };
 
 const styles = StyleSheet.create({
   container: {

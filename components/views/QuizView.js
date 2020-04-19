@@ -20,7 +20,7 @@ import GameOverScreen from "../GameOverScreen/GameOverScreen";
 const QuizView = (props) => {
   const dispatch = useDispatch();
   const [quizOver, setQuizOver] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0); //index of the current question
   const deck = props.route.params.deck;
   const quiz = useSelector((state) => state.quiz.quiz);
   const question = quiz.questions[index].question;
@@ -61,13 +61,8 @@ const QuizView = (props) => {
     result.correct = quiz.questions.reduce((a, c) => {
       return c.correct ? a + 1 : a + 0;
     }, 0);
-    console.log(
-      quiz.questions.reduce((a, c) => {
-        return c.correct ? a + 1 : a + 0;
-      }, 0)
-    );
+
     result.length = quiz.questions.length;
-    console.log(result);
     return result;
   };
 
