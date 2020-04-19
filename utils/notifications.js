@@ -25,12 +25,12 @@ export function setLocalNotification() {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === "granted") {
-            console.log("data is null and permission granted!");
+            console.log("data is null and permissions are granted!");
             Notifications.cancelAllScheduledNotificationsAsync();
 
             let tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(20);
+            tomorrow.setHours(21);
             tomorrow.setMinutes(0);
 
             Notifications.scheduleLocalNotificationAsync(
